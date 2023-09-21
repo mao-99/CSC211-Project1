@@ -16,8 +16,8 @@ int main()
 	string lName, fName, country;
 	while (!infile.eof()) {
 		infile >> rank;
-		infile >> fName;
 		infile >> lName;
+		infile >> fName;
 		infile >> country;
 		if (country == "???") {
 			country = "Unknown";
@@ -28,7 +28,26 @@ int main()
 		players.push_back(aPlayer);
 	}
 	cout << players.size() << endl;
-
+	string userInput;
+	cout << "Who do you want to lookup by last name. Type n if you want to quit " << endl;
+	cin >> userInput;
+	while (userInput != "n") {
+		int i = 0;
+		while (i < players.size()) {
+			char x = userInput[0];
+			char f = players.at(i).getLName()[0];
+			if (f > x) {
+				i = 0;
+				break;
+			}
+			if (userInput == players.at(i).getLName()) {
+				players.at(i).display();	
+			}
+			i++;
+		}
+		cout << "Who do you want to lookup by last name. Type n if you want to quit " << endl;
+		cin >> userInput;
+	}
 	return 0;
 }
 
